@@ -71,44 +71,6 @@ class _SkillsSectionState extends State<SkillsSection> {
     },
   ];
 
-  double calculateSizedBoxWidth(double width) {
-    if (width <= 340 && width >= 241) {
-      return 1450 - (340 - width) * 4;
-    } else if (width <= 350) {
-      return 1100;
-    } else if (width <= 500 && width >= 349) {
-      return 1550 - (500 - width) * 2.7;
-    } else if (width <= 600 && width > 500) {
-      return 770 - (600 - width);
-    } else if (width <= 620) {
-      return 790;
-    } else if (width <= 640) {
-      return 810;
-    } else if (width <= 665) {
-      return 820;
-    } else if (width <= 670) {
-      return 680;
-    } else if (width <= 700) {
-      return 700;
-    } else if (width <= 720) {
-      return 730;
-    } else if (width <= 765) {
-      return 740;
-    } else if (width <= 780) {
-      return 750;
-    } else if (width <= 785) {
-      return 760;
-    } else if (width <= 820) {
-      return 780;
-    } else if (width <= 1150) {
-      return 480;
-    } else if (width <= 1200) {
-      return 450;
-    } else {
-      return 480; // Default size for larger widths
-    }
-  }
-
   double adjustSkillSetsTextAndIconsSize(double width) {
     if (width <= 298) {
       return 14;
@@ -213,74 +175,52 @@ class _SkillsSectionState extends State<SkillsSection> {
           const SizedBox(
             height: 40,
           ),
-          SizedBox(
-            height: calculateSizedBoxWidth(width),
-            child: GridView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: skillList.length,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: width <= 500
-                    ? 2
-                    : width <= 665
-                        ? 3
-                        : width <= 820
-                            ? 4
-                            : width <= 1000
-                                ? 5
-                                : width <= 1150
-                                    ? 6
-                                    : 7,
-                childAspectRatio: width <= 340
-                    ? 0.5
-                    : width <= 340
-                        ? 0.6
-                        : 0.7,
-              ),
-              itemBuilder: (context, index) {
-                return Center(
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(24.0),
-                        decoration: BoxDecoration(
-                            color: AppColor.backgroundPrimary,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              skillList[index]['image'],
-                              height: 100,
-                              width: 100,
+          Center(
+            child: Wrap(
+              spacing: 20.0, // space between items
+              runSpacing: 20.0, // space between lines of items
+              children: skillList.map((skill) {
+                return Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(24.0),
+                      decoration: BoxDecoration(
+                          color: AppColor.backgroundPrimary,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            skill['image'],
+                            height: 100,
+                            width: 100,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            skill['skillLevel'],
+                            style: const TextStyle(
+                              color: AppColor.whitePrimary,
+                              fontWeight: FontWeight.bold,
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              skillList[index]['skillLevel'],
-                              style: const TextStyle(
-                                color: AppColor.whitePrimary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(
-                        height: 10,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      skill['skillName'],
+                      style: const TextStyle(
+                        color: AppColor.greyPrimary,
                       ),
-                      Text(
-                        skillList[index]['skillName'],
-                        style: const TextStyle(
-                          color: AppColor.greyPrimary,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 );
-              },
+              }).toList(),
             ),
-          ),
+          )
         ],
       ),
     );

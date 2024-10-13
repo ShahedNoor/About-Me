@@ -1,4 +1,5 @@
 import 'package:about_me/components/my_icon.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -74,27 +75,35 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  MyIcon(
-                    icon: Icon(
-                      Icons.arrow_left,
-                      size: adjustSkillSetsTextAndIconsSize(width),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  MyIcon(
-                    icon: Icon(
-                      Icons.arrow_right,
-                      size: adjustSkillSetsTextAndIconsSize(width),
-                    ),
-                  ),
-                ],
-              )
             ],
-          )
+          ),
+          const SizedBox(height: 20,),
+          Center(
+            child: CarouselSlider.builder(
+              options: CarouselOptions(
+                aspectRatio: 16/9,
+                viewportFraction: 0.8,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                enlargeFactor: 0.3,
+                scrollDirection: Axis.horizontal,
+              ),
+              itemCount: 5,
+              itemBuilder: (BuildContext context, int index, int realIndex) {
+                return Container(
+                  width: MediaQuery.sizeOf(context).width,
+                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Image.asset("assets/images/projects_image/social_wall.png"),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

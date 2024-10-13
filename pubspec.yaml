@@ -39,6 +39,7 @@ dependencies:
   url_launcher: ^6.3.1
   flutter_svg: ^2.0.10+1
   flutter_animate: ^4.5.0
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
     - assets/icons/tailwind-css.svg
     - assets/icons/firebase.svg
     - assets/icons/node-js.svg
+    - assets/images/projects_image/social_wall.png
 
   #   - images/a_dot_ham.jpeg
 

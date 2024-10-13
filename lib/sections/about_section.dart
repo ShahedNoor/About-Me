@@ -71,25 +71,30 @@ class _AboutSectionState extends State<AboutSection> {
   }
 
   void startTimer() {
-    // Check if loop is already stopped before creating a new timer
     if (!isStopped) {
       timer = Timer.periodic(const Duration(milliseconds: 100), (_) {
-        setState(() {
-          currentIndex = (currentIndex + 1) % names.length; // Wrap around
-        });
-        if (currentIndex == names.length - 1) {
-          // Stop the timer
-          timer?.cancel();
-          // Set isStopped to true
-          isStopped = true;
-          // Restart the loop after 5 seconds pause
-          Future.delayed(const Duration(seconds: 5), () {
-            setState(() {
-              currentIndex = 0; // Reset index (optional)
-              isStopped = false;
-              startTimer();
-            });
+        // Check if the widget is still mounted before calling setState
+        if (mounted) {
+          setState(() {
+            currentIndex = (currentIndex + 1) % names.length; // Wrap around
           });
+          if (currentIndex == names.length - 1) {
+            timer?.cancel();
+            isStopped = true;
+            Future.delayed(const Duration(seconds: 5), () {
+              // Check if the widget is still mounted before calling setState
+              if (mounted) {
+                setState(() {
+                  currentIndex = 0; // Reset index (optional)
+                  isStopped = false;
+                  startTimer();
+                });
+              }
+            });
+          }
+        } else {
+          // If not mounted, cancel the timer to prevent further calls
+          timer?.cancel();
         }
       });
     }
