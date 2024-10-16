@@ -1,4 +1,5 @@
 import 'package:about_me/components/my_icon.dart';
+import 'package:about_me/data/projects_data.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,33 +30,6 @@ class _ProjectsSectionState extends State<ProjectsSection> {
     } else {
       return 27;
     }
-  }
-
-  Size adjustButtonSize(double width) {
-    return Size(
-      width >= 1200
-          ? 150
-          : width > 999
-              ? width / 90
-              : width > 900
-                  ? width / 80
-                  : width > 700
-                      ? width / 70
-                      : width > 600
-                          ? width / 60
-                          : width / 50,
-      width >= 1200
-          ? 50
-          : width > 999
-              ? width / 22
-              : width > 900
-                  ? width / 21
-                  : width > 700
-                      ? width / 19
-                      : width > 600
-                          ? width / 17
-                          : width / 15,
-    );
   }
 
   @override
@@ -131,54 +105,21 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                     Container(
                       width: MediaQuery.sizeOf(context).width,
                       margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                      child: Image.asset(
-                        "assets/images/projects_image/social_wall.png",
-                        fit: BoxFit
-                            .cover, // Ensures the image covers the container
-                      ),
-                    ),
-
-                    // The new button above the row
-                    Positioned(
-                      bottom: width < 700
-                          ? width * 0.17
-                          : width < 900
-                              ? width * 0.16
-                              : width < 1000
-                                  ? width * 0.15
-                                  : width * 0.14,
-                      // Position above the existing row
-                      right: MediaQuery.sizeOf(context).width *
-                          0.02, // Responsive position
-                      child: Center(
-                        child: TextButton.icon(
-                          onPressed: () {},
-                          icon: FaIcon(
-                            FontAwesomeIcons.download,
-                            color: AppColor.whitePrimary,
-                            size: width / 50,
-                          ),
-                          label: Text(
-                            "Download Release",
-                            style: TextStyle(
-                              color: AppColor.whitePrimary,
-                              fontSize: width / 50,
-                            ),
-                          ),
-                          style: TextButton.styleFrom(
-                            backgroundColor: AppColor.backgroundSecondary,
-                            minimumSize: adjustButtonSize(width),
-                          ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12.0),
+                        child: Image.asset(
+                          ProjectsData().projectsData[index]["projectImage"],
+                          fit: BoxFit
+                              .cover, // Ensures the image covers the container
                         ),
                       ),
                     ),
 
-                    // The Button overlay with two buttons in a Row
                     Positioned(
                       bottom: MediaQuery.sizeOf(context).width *
-                          0.10, // Responsive position
+                          0.12, // Responsive position
                       right: MediaQuery.sizeOf(context).width *
-                          0.02, // Responsive position
+                          0.04, // Responsive position
                       child: Row(
                         children: [
                           // First button
@@ -199,7 +140,6 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                               ),
                               style: TextButton.styleFrom(
                                 backgroundColor: AppColor.backgroundSecondary,
-                                minimumSize: adjustButtonSize(width),
                               ),
                             ),
                           ),
@@ -224,7 +164,6 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                               ),
                               style: TextButton.styleFrom(
                                 backgroundColor: AppColor.backgroundSecondary,
-                                minimumSize: adjustButtonSize(width),
                               ),
                             ),
                           ),
