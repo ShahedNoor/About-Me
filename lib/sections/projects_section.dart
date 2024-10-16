@@ -14,31 +14,12 @@ class ProjectsSection extends StatefulWidget {
 }
 
 class _ProjectsSectionState extends State<ProjectsSection> {
-  double adjustSkillSetsTextAndIconsSize(double width) {
-    if (width <= 298) {
-      return 14;
-    } else if (width <= 322) {
-      return 16;
-    } else if (width <= 345) {
-      return 18;
-    } else if (width <= 370) {
-      return 20;
-    } else if (width <= 410) {
-      return 22;
-    } else if (width <= 405) {
-      return 24;
-    } else {
-      return 27;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     return Container(
       padding: EdgeInsets.only(
         top: 32,
-        bottom: 32,
         left: width > 1280 ? width / 20 : 16,
         right: width > 1280 ? width / 20 : 16,
       ),
@@ -54,27 +35,33 @@ class _ProjectsSectionState extends State<ProjectsSection> {
           const SizedBox(
             height: 20,
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Text(
-                    "Featured Projects",
-                    style: TextStyle(
-                      color: AppColor.whitePrimary,
-                      fontSize: adjustSkillSetsTextAndIconsSize(width),
+              Flexible(
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Text(
+                        "Featured Projects",
+                        style: TextStyle(
+                          color: AppColor.whitePrimary,
+                          fontSize: 27,
+                        ),
+                        softWrap: true, // Allow text wrapping
+                        overflow: TextOverflow.visible, // Handle overflow
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Icon(
-                    FontAwesomeIcons.diagramProject,
-                    color: AppColor.greyPrimary,
-                    size: adjustSkillSetsTextAndIconsSize(width),
-                  ),
-                ],
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Icon(
+                      FontAwesomeIcons.diagramProject,
+                      color: AppColor.greyPrimary,
+                      size: 27,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -90,8 +77,8 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                 enableInfiniteScroll: true,
                 reverse: false,
                 autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayInterval: const Duration(seconds: 3),
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
                 autoPlayCurve: Curves.fastOutSlowIn,
                 enlargeCenterPage: true,
                 enlargeFactor: 0.3,
@@ -144,7 +131,8 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                             ),
                           ),
                           const SizedBox(
-                              width: 10), // Space between the buttons
+                            width: 10,
+                          ), // Space between the buttons
 
                           // Second button
                           Center(

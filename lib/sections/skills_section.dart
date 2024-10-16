@@ -1,4 +1,5 @@
 import 'package:about_me/components/my_icon.dart';
+import 'package:about_me/data/skills_data.dart';
 import 'package:about_me/utils/colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,72 +21,6 @@ class _SkillsSectionState extends State<SkillsSection> {
       await launchUrl(url);
     } else {
       throw 'Could not launch $url';
-    }
-  }
-
-  List skillList = [
-    {
-      "skillName": "Figma",
-      "image": "assets/icons/figma.svg",
-      "skillLevel": "70%"
-    },
-    {
-      "skillName": "Adobe XD",
-      "image": "assets/icons/adobe-xd.svg",
-      "skillLevel": "80%"
-    },
-    {
-      "skillName": "Dart",
-      "image": "assets/icons/dart.svg",
-      "skillLevel": "90%"
-    },
-    {
-      "skillName": "Flutter",
-      "image": "assets/icons/flutter.svg",
-      "skillLevel": "90%"
-    },
-    {
-      "skillName": "Firebase",
-      "image": "assets/icons/firebase.svg",
-      "skillLevel": "80%"
-    },
-    {
-      "skillName": "Node JS",
-      "image": "assets/icons/node-js.svg",
-      "skillLevel": "85%"
-    },
-    {
-      "skillName": "HTML5",
-      "image": "assets/icons/html-5.svg",
-      "skillLevel": "85%"
-    },
-    {
-      "skillName": "Tailwind CSS",
-      "image": "assets/icons/tailwind-css.svg",
-      "skillLevel": "85%"
-    },
-    {
-      "skillName": "Javascript",
-      "image": "assets/icons/js.svg",
-      "skillLevel": "90%"
-    },
-  ];
-
-  double adjustSkillSetsTextAndIconsSize(double width) {
-    if (width <= 298) {
-      return 14;
-    } else if (width <= 322) {
-      return 16;
-    } else if (width <= 345) {
-      return 18;
-    } else if (width <= 370) {
-      return 20;
-    } else if (width <= 410) {
-      return 22;
-    } else if (width <= 405) {
-      return 24;
-    } else {
-      return 27;
     }
   }
 
@@ -128,23 +63,29 @@ class _SkillsSectionState extends State<SkillsSection> {
           const SizedBox(
             height: 20,
           ),
-          Row(
+          const Row(
             children: [
-              Text(
-                "My Current SkillSets",
-                style: TextStyle(
-                  color: AppColor.whitePrimary,
-                  fontSize: adjustSkillSetsTextAndIconsSize(width),
+              Flexible(
+                child: Text(
+                  "My Current SkillSets",
+                  style: TextStyle(
+                    color: AppColor.whitePrimary,
+                    fontSize: 27,
+                  ),
+                  softWrap: true,
+                  // This ensures the text will wrap to the next line if needed
+                  overflow:
+                      TextOverflow.visible, // Handles text overflow gracefully
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: 20,
               ),
               Icon(
                 FontAwesomeIcons.penNib,
                 color: AppColor.greyPrimary,
-                size: adjustSkillSetsTextAndIconsSize(width),
-              )
+                size: 27,
+              ),
             ],
           ),
           const SizedBox(
@@ -179,7 +120,7 @@ class _SkillsSectionState extends State<SkillsSection> {
             child: Wrap(
               spacing: 20.0, // space between items
               runSpacing: 20.0, // space between lines of items
-              children: skillList.map((skill) {
+              children: SkillsData().skillData.map((skill) {
                 return Column(
                   children: [
                     Container(
