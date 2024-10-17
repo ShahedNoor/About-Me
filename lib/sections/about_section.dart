@@ -178,14 +178,12 @@ class _AboutSectionState extends State<AboutSection> {
       //   return 8;
       //} else
       if (width <= 408) {
-        return width / 50;
-      } else if (width <= 784) {
         return 10;
-      } else if (width <= 820) {
+      } else if (width <= 700) {
         return 11;
-      } else if (width <= 973) {
+      } else if (width <= 800) {
         return 12;
-      } else if (width <= 1009) {
+      } else if (width <= 900) {
         return 13;
       } else if (width <= 1080) {
         return 14;
@@ -336,11 +334,15 @@ class _AboutSectionState extends State<AboutSection> {
                 const SizedBox(
                   width: 10,
                 ),
-                Text(
-                  "Years of\nExperience.",
-                  style: TextStyle(
-                    color: AppColor.greyPrimary,
-                    fontSize: calculateTextSize(width),
+                Flexible(
+                  child: Text(
+                    "Years of\nExperience.",
+                    style: TextStyle(
+                      color: AppColor.whitePrimary,
+                      fontSize: calculateTextSize(width),
+                    ),
+                    softWrap: true, // Allow text wrapping
+                    overflow: TextOverflow.visible, // Handle overflow
                   ),
                 ),
                 Container(
@@ -362,13 +364,16 @@ class _AboutSectionState extends State<AboutSection> {
                 const SizedBox(
                   width: 10,
                 ),
-                Text(
-                  "Projects Completed\nOn 15 countries",
-                  style: TextStyle(
-                    color: AppColor.greyPrimary,
-                    fontSize: calculateTextSize(width),
+                Flexible(
+                  child: Text(
+                    "Projects Completed\nOn 15 countries",
+                    style: TextStyle(
+                      color: AppColor.whitePrimary,
+                      fontSize: calculateTextSize(width),
+                    ),
+                    softWrap: true, // Allow text wrapping
+                    overflow: TextOverflow.visible, // Handle overflow
                   ),
-                  softWrap: true,
                 ),
               ],
             ),
