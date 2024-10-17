@@ -81,7 +81,7 @@ class _AddressSectionState extends State<AddressSection> {
           overflow: TextOverflow.visible, // Handle overflow
         ),
         const SizedBox(
-          height: 16,
+          height: 20,
         ),
         MouseRegion(
           onEnter: (context) => setState(() => isHovered = true),
@@ -147,10 +147,10 @@ class _AddressSectionState extends State<AddressSection> {
           child: const Text(
             "shahednoor32@gmail.com",
             style: TextStyle(
-              color: AppColor.greyPrimary,
-              fontSize: 24,
+              color: AppColor.whitePrimary,
+              fontSize: 27,
               decoration: TextDecoration.underline,
-              decorationColor: AppColor.greyPrimary,
+              decorationColor: AppColor.whitePrimary,
             ),
           ),
         ),
