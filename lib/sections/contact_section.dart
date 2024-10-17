@@ -141,7 +141,7 @@ class ContactSection extends StatelessWidget {
                       width: 20,
                     ),
                     Icon(
-                      FontAwesomeIcons.solidLightbulb,
+                      FontAwesomeIcons.addressBook,
                       color: AppColor.greyPrimary,
                       size: 27,
                     ),
@@ -176,8 +176,8 @@ class ContactSection extends StatelessWidget {
             height: 10,
           ),
           MyContactListTile(
-            leading: FontAwesomeIcons.phone,
-            title: "Chat with me",
+            leading: FontAwesomeIcons.envelopesBulk,
+            title: "Send direct mail",
             subtitle: "shahednoor32@gmail.com",
             url: "mailto:shahednoor32@gmail.com",
           ),
@@ -185,7 +185,7 @@ class ContactSection extends StatelessWidget {
             height: 10,
           ),
           MyContactListTile(
-            leading: FontAwesomeIcons.phone,
+            leading: FontAwesomeIcons.whatsapp,
             title: "Whatsapp",
             subtitle: "Send messages to WhatsApp",
             url: "https://wa.me/+8801648405873",
@@ -195,110 +195,89 @@ class ContactSection extends StatelessWidget {
     );
   }
 
-  Widget buildContactRow(
-      {required IconData icon, required String label, required String value}) {
-    return Row(
-      children: [
-        Icon(icon, color: AppColor.greyPrimary),
-        const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              label,
-              style: const TextStyle(color: AppColor.greyPrimary),
-            ),
-            Text(
-              value,
-              style: const TextStyle(color: AppColor.whitePrimary),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-      ],
-    );
-  }
-
   Widget buildContactForm() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Just Say 👋 Hi.",
-          style: TextStyle(
-            color: AppColor.whitePrimary,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.all(25.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Just Say 👋 Hi.",
+            style: TextStyle(
+              color: AppColor.whitePrimary,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        const SizedBox(height: 20),
-        const Text(
-          "Hoping that you will have a Great Day. Waiting for your message!",
-          style: TextStyle(
-            color: AppColor.greyPrimary,
-            fontSize: 16,
+          const SizedBox(height: 20),
+          const Text(
+            "Looking forward to hearing from you and wishing you a wonderful day ahead!",
+            style: TextStyle(
+              color: AppColor.greyPrimary,
+              fontSize: 16,
+            ),
           ),
-        ),
-        const SizedBox(height: 20),
-        Form(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: "Full Name",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: "Email Address",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: "Subject",
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                maxLines: 4,
-                decoration: const InputDecoration(
-                  hintText: "Write a message",
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 20.0, horizontal: 20),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
+          const SizedBox(height: 20),
+          Form(
+            child: Column(
+              children: [
+                Row(
                   children: [
-                    Text("Submit"),
-                    SizedBox(width: 10),
-                    Icon(FontAwesomeIcons.solidPaperPlane),
+                    Expanded(
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: "Full Name",
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: "Email Address",
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            ],
+                const SizedBox(height: 10),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: "Subject",
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                TextFormField(
+                  maxLines: 4,
+                  decoration: const InputDecoration(
+                    hintText: "Write a message",
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20.0, horizontal: 20),
+                  ),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("Submit"),
+                      SizedBox(width: 10),
+                      Icon(FontAwesomeIcons.solidPaperPlane),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

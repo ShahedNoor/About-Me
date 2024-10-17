@@ -1,4 +1,5 @@
 import 'package:about_me/sections/about_section.dart';
+import 'package:about_me/sections/address_section.dart';
 import 'package:about_me/sections/contact_section.dart';
 import 'package:about_me/sections/projects_section.dart';
 import 'package:about_me/sections/skills_section.dart';
@@ -37,6 +38,8 @@ class _HomePageState extends State<HomePage> {
           ProjectsSection(),
           // Contact section
           ContactSection(),
+          // Address section
+          AddressSection(),
         ],
       ),
     );
